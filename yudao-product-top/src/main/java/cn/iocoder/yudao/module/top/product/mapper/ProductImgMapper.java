@@ -19,10 +19,10 @@ public interface ProductImgMapper extends BaseMapperX<ProductImgPO> {
                 .eqIfPresent(ProductImgPO::getPId, reqVO.getPId())
                 .eqIfPresent(ProductImgPO::getProductImgAddr, reqVO.getProductImgAddr())
                 .eqIfPresent(ProductImgPO::getIsMaster, reqVO.getIsMaster())
-                .eqIfPresent(ProductImgPO::getCreateOperate, reqVO.getCreateOperate())
-                .betweenIfPresent(ProductImgPO::getCretaeDate, reqVO.getCretaeDate())
-                .eqIfPresent(ProductImgPO::getUpdateOperate, reqVO.getUpdateOperate())
-                .betweenIfPresent(ProductImgPO::getUdpateDate, reqVO.getUdpateDate())
+                .eqIfPresent(ProductImgPO::getCreator, reqVO.getCreateOperate())
+                .betweenIfPresent(ProductImgPO::getCreateTime, reqVO.getCreateTime())
+                .eqIfPresent(ProductImgPO::getCreator, reqVO.getUpdateOperate())
+                .betweenIfPresent(ProductImgPO::getUpdateTime, reqVO.getUpdateTime())
                 .orderByDesc(ProductImgPO::getId));
     }
 

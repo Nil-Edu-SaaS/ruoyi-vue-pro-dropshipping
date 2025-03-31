@@ -6,6 +6,7 @@ import cn.iocoder.yudao.module.top.product.vo.ProductImgSaveReqVO;
 import cn.iocoder.yudao.framework.common.pojo.PageResult;
 
 import javax.validation.Valid;
+import java.util.List;
 
 /**
  * 商品图片 Service 接口
@@ -39,7 +40,7 @@ public interface ProductImgService {
     /**
      * 删除商品图片
      *
-     * @param id 商品id
+     * @param pId 商品id
      */
     void deleteProductImgByProductId(Long pId);
 
@@ -58,5 +59,13 @@ public interface ProductImgService {
      * @return 商品图片分页
      */
     PageResult<ProductImgPO> getProductImgPage(ProductImgPageReqVO pageReqVO);
+
+
+    /**
+     * 删除商品图片
+     *
+     * @param pId 商品id
+     */
+    List<ProductImgPO> getProductImgByProductId(Long pId);
 
 }

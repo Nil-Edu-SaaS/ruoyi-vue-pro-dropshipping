@@ -1,8 +1,11 @@
 package cn.iocoder.yudao.module.top.product.po;
 
+import cn.iocoder.yudao.module.top.product.vo.ProductImgSaveReqVO;
 import lombok.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.List;
+
 import com.baomidou.mybatisplus.annotation.*;
 import cn.iocoder.yudao.framework.mybatis.core.dataobject.BaseDO;
 
@@ -63,6 +66,7 @@ public class ProductPO extends BaseDO {
      * 修改人
      */
     private String updater;
+
     /**
      * 修改时间
      */

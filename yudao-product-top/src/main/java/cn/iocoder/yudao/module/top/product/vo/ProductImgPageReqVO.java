@@ -29,13 +29,13 @@ public class ProductImgPageReqVO extends PageParam {
 
     @Schema(description = "创建时间")
     @DateTimeFormat(pattern = FORMAT_YEAR_MONTH_DAY_HOUR_MINUTE_SECOND)
-    private LocalDateTime[] cretaeDate;
+    private LocalDateTime[] createTime;
 
     @Schema(description = "修改人")
     private String updateOperate;
 
     @Schema(description = "修改时间")
     @DateTimeFormat(pattern = FORMAT_YEAR_MONTH_DAY_HOUR_MINUTE_SECOND)
-    private LocalDateTime[] udpateDate;
+    private LocalDateTime[] updateTime;
 
 }

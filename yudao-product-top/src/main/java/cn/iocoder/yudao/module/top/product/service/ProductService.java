@@ -4,8 +4,7 @@ import java.util.*;
 import cn.iocoder.yudao.framework.common.pojo.PageResult;
 import cn.iocoder.yudao.framework.common.pojo.PageParam;
 import cn.iocoder.yudao.module.top.product.po.ProductPO;
-import cn.iocoder.yudao.module.top.product.vo.ProductPageReqVO;
-import cn.iocoder.yudao.module.top.product.vo.ProductSaveReqVO;
+import cn.iocoder.yudao.module.top.product.vo.*;
 
 import javax.validation.Valid;
 
@@ -44,7 +43,7 @@ public interface ProductService {
      * @param id 编号
      * @return 商品信息
      */
-    ProductPO getProduct(Long id);
+    ProductInfoVo getProduct(Long id);
 
     /**
      * 获得商品信息分页
@@ -53,5 +52,14 @@ public interface ProductService {
      * @return 商品信息分页
      */
     PageResult<ProductPO> getProductPage(ProductPageReqVO pageReqVO);
+
+    /**
+     * 导入商品信息
+     *
+     * @param importUsers 商品信息
+     * @param isUpdateSupport 是否支持更新
+     * @return 商品信息
+     */
+    ProductImportRespVO importUserList(List<ProductImportExcelVO> importUsers, boolean isUpdateSupport);
 
 }

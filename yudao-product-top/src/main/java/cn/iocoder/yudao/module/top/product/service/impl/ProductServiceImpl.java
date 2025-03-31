@@ -6,14 +6,14 @@ import cn.iocoder.yudao.module.top.product.mapper.ProductMapper;
 import cn.iocoder.yudao.module.top.product.po.ProductPO;
 import cn.iocoder.yudao.module.top.product.service.ProductImgService;
 import cn.iocoder.yudao.module.top.product.service.ProductService;
-import cn.iocoder.yudao.module.top.product.vo.ProductImgSaveReqVO;
-import cn.iocoder.yudao.module.top.product.vo.ProductPageReqVO;
-import cn.iocoder.yudao.module.top.product.vo.ProductSaveReqVO;
+import cn.iocoder.yudao.module.top.product.vo.*;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 import cn.iocoder.yudao.framework.common.util.object.BeanUtils;
 
 import javax.annotation.Resource;
+
+import java.util.List;
 
 import static cn.iocoder.yudao.framework.common.exception.util.ServiceExceptionUtil.exception;
 
@@ -87,13 +87,23 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public ProductPO getProduct(Long id) {
-        return productMapper.selectById(id);
+    public ProductInfoVo getProduct(Long id) {
+        ProductPO productPO = productMapper.selectById(id);
+        ProductInfoVo productInfoVo = new ProductInfoVo();
+        BeanUtils.copyProperties(productPO, productInfoVo);
+        productInfoVo.setImagList(productImgService.getProductImgByProductId(id));
+        return productInfoVo;
     }
 
     @Override
     public PageResult<ProductPO> getProductPage(ProductPageReqVO pageReqVO) {
         return productMapper.selectPage(pageReqVO);
     }
+
+    @Override
+    public ProductImportRespVO importUserList(List<ProductImportExcelVO> importUsers, boolean isUpdateSupport) {
+        return null;
+    }
+
 
 }

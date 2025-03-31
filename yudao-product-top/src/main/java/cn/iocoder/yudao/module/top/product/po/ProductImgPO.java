@@ -42,18 +42,20 @@ public class ProductImgPO extends BaseDO {
     /**
      * 创建人
      */
-    private String createOperate;
+    private String creator;
     /**
      * 创建时间
      */
-    private LocalDateTime cretaeDate;
+    @TableField("create_time")
+    private LocalDateTime createTime;
     /**
      * 修改人
      */
-    private String updateOperate;
+    private String updater;
     /**
      * 修改时间
      */
-    private LocalDateTime udpateDate;
+    @TableField("update_time")
+    private LocalDateTime updateTime;
 
 }

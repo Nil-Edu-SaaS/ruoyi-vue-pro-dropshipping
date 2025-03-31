@@ -14,6 +14,8 @@ import cn.iocoder.yudao.framework.common.util.object.BeanUtils;
 
 import javax.annotation.Resource;
 
+import java.util.List;
+
 import static cn.iocoder.yudao.framework.common.exception.util.ServiceExceptionUtil.exception;
 
 /**
@@ -76,6 +78,20 @@ public class ProductImgServiceImpl implements ProductImgService {
     @Override
     public PageResult<ProductImgPO> getProductImgPage(ProductImgPageReqVO pageReqVO) {
         return productImgMapper.selectPage(pageReqVO);
+    }
+
+    @Override
+    public List<ProductImgPO> getProductImgByProductId(Long pId) {
+
+        QueryWrapper<ProductImgPO> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("p_id",pId);
+        queryWrapper.eq("deleted",0);
+
+        List<ProductImgPO> productImgPOS = productImgMapper.selectList(queryWrapper);
+        if (!productImgPOS.isEmpty()) {
+            return productImgPOS;
+        }
+        return null;
     }
 
 }
