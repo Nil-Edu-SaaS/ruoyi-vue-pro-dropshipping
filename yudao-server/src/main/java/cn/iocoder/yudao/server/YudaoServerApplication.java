@@ -1,7 +1,9 @@
 package cn.iocoder.yudao.server;
 
+import cn.iocoder.yudao.module.system.controller.yunExpress.config.YunTuConfigProperties;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 
 /**
  * 项目的启动类
@@ -14,6 +16,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  */
 @SuppressWarnings("SpringComponentScan") // 忽略 IDEA 无法识别 ${yudao.info.base-package}
 @SpringBootApplication(scanBasePackages = {"${yudao.info.base-package}.server", "${yudao.info.base-package}.module"})
+@EnableConfigurationProperties(YunTuConfigProperties.class)
 public class YudaoServerApplication {
 
     public static void main(String[] args) {

@@ -357,3 +357,20 @@ debug: false
 # 插件配置 TODO 芋艿：【IOT】需要处理下
 pf4j:
   pluginsDir: /Users/anhaohao/code/gitee/ruoyi-vue-pro/plugins # 插件目录
+
+# 云途物流配置
+dev:
+  yuntu:
+    customerId: ITC0893791
+    apiSecret: axzc2utvPbfc9UbJDOh+7w==
+    baseUrl: http://omsapi.uat.yunexpress.com
+    getGoodsType: /api/Common/GetGoodsType  #货品类型
+    getPriceTrial: /api/Freight/GetPriceTrial  #价格
+    createOrder: /api/WayBill/CreateOrder  #申请运单
+    getOrder: /api/WayBill/GetOrder  #查询运单
+    getSender: /api/WayBill/GetSender #查询发件人信息
+    getShippingFeeDetail: /api/Freight/GetShippingFeeDetail #查询物流运费明细
+    getTrackInfo: /api/Tracking/GetTrackInfo #查询物流轨迹信息
+    createdOrderSubscribe: /api/tracking/CreatedOrderSubscribe #按单号订阅轨迹
+    updateWeight: /api/WayBill/UpdateWeight #修改订单预报重量
+    deleteOrder: /api/WayBill/Delete  #订单删除
