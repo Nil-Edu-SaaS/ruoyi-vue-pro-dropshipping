@@ -46,7 +46,6 @@ public class GoodsServiceImpl extends BaseServiceImpl implements GoodsService {
             }else{
                 goodsTypeService.createGoodsType(goodsTypeSaveReqVO);
             }
-            System.out.println("==测试提交==>");
         });
         return goodsTypes;
     }
