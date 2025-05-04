@@ -8,49 +8,41 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
+import top.taolord.yunexpress.application.YunExpressClient;
+import top.taolord.yunexpress.domain.model.ShippingFee;
+import top.taolord.yunexpress.domain.model.TrackInfo;
+
+import javax.annotation.Resource;
 
 @Service
 @Slf4j
 public class ShippingFeeServiceImpl implements ShippingFeeService {
-    @Override
-    public JSONObject getShippingFeeDetail(RequestModel tokenModelBuilder) {
-        RestTemplate restTemplate = new RestTemplate();
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_JSON);
-        System.out.println(tokenModelBuilder.getAuthorization());
-        headers.set("Authorization", tokenModelBuilder.getAuthorization());
-        // 创建 HttpEntity
-        HttpEntity<String> requestEntity = new HttpEntity<>(headers);
 
-        String paramStr = "?WayBillNumber=" + tokenModelBuilder.getParams().get("WayBillNumber");
+    @Resource
+    private YunExpressClient client;
+
+    @Override
+    public JSONObject getShippingFeeDetail(String wayBillNumber) {
 
         // 发送 GET 请求
-        ResponseEntity<String> response = restTemplate.exchange(
-                tokenModelBuilder.getBaseUrl() + tokenModelBuilder.getUrl() + paramStr,
-                HttpMethod.GET,
-                requestEntity,
-                String.class);
-        return JSONUtil.parseObj(response.getBody());
+        ShippingFee shippingFee = client.getShippingFeeDetail(wayBillNumber);
+
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.set("wayBillNumber", shippingFee.wayBillNumber());
+        jsonObject.set("details", shippingFee.feeDetails());
+
+        return jsonObject;
     }
 
     @Override
-    public JSONObject getTrackInfo(RequestModel tokenModelBuilder) {
-        RestTemplate restTemplate = new RestTemplate();
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_JSON);
-        System.out.println(tokenModelBuilder.getAuthorization());
-        headers.set("Authorization", tokenModelBuilder.getAuthorization());
-        // 创建 HttpEntity
-        HttpEntity<String> requestEntity = new HttpEntity<>(headers);
+    public JSONObject getTrackInfo(String orderNumber) {
 
-        String paramStr = "?OrderNumber=" + tokenModelBuilder.getParams().get("OrderNumber");
+        TrackInfo trackInfo = client.getTrackInfo(orderNumber);
 
-        // 发送 GET 请求
-        ResponseEntity<String> response = restTemplate.exchange(
-                tokenModelBuilder.getBaseUrl() + tokenModelBuilder.getUrl() + paramStr,
-                HttpMethod.GET,
-                requestEntity,
-                String.class);
-        return JSONUtil.parseObj(response.getBody());
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.set("orderNumber", trackInfo.orderNumber());
+        jsonObject.set("details", trackInfo.trackDetails());
+
+        return jsonObject;
     }
 }

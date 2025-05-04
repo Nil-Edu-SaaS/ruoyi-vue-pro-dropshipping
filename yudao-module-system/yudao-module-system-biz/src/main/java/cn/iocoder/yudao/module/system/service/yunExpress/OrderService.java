@@ -1,23 +1,28 @@
 package cn.iocoder.yudao.module.system.service.yunExpress;
 
 import cn.hutool.json.JSONObject;
-import cn.iocoder.yudao.module.system.controller.yunExpress.model.RequestModel;
+import cn.iocoder.yudao.module.system.controller.yunExpress.vo.DeleteOrderRequest;
+import cn.iocoder.yudao.module.system.controller.yunExpress.vo.OrderSubscribeRequest;
+import cn.iocoder.yudao.module.system.controller.yunExpress.vo.UpdateWeightRequest;
+import top.taolord.yunexpress.domain.model.OrderRequest;
+
+import java.util.List;
 
 public interface OrderService {
 
-    JSONObject createOrder(RequestModel tokenModelBuilder);
+    List<JSONObject> createOrder(OrderRequest orderRequest);
 
-    JSONObject getOrder(RequestModel tokenModelBuilder);
+    JSONObject getOrder(String orderNumber);
 
-    JSONObject getSender(RequestModel tokenModelBuilder);
+    JSONObject getSender(String orderNumber);
 
-    JSONObject createdOrderSubscribe(RequestModel tokenModelBuilder);
+    JSONObject createdOrderSubscribe(OrderSubscribeRequest orderSubscribeRequest);
 
-    JSONObject cancelOrderSubscribe(RequestModel tokenModelBuilder);
+    JSONObject cancelOrderSubscribe(OrderSubscribeRequest orderSubscribeRequest);
 
-    JSONObject updateWeight(RequestModel tokenModelBuilder);
+    JSONObject updateWeight(UpdateWeightRequest updateWeightRequest);
 
-    JSONObject deleteOrder(RequestModel tokenModelBuilder);
+    JSONObject deleteOrder(DeleteOrderRequest deleteOrderRequest);
 
 
 }

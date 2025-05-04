@@ -1,7 +1,5 @@
 package cn.iocoder.yudao.module.top.product.controller;
 
-import cn.iocoder.yudao.framework.common.enums.CommonStatusEnum;
-import cn.iocoder.yudao.module.system.enums.common.SexEnum;
 import cn.iocoder.yudao.module.top.product.po.ProductPO;
 import cn.iocoder.yudao.module.top.product.service.ProductService;
 import cn.iocoder.yudao.module.top.product.vo.*;
@@ -31,6 +29,7 @@ import org.springframework.web.multipart.MultipartFile;
 import static cn.iocoder.yudao.framework.apilog.core.enums.OperateTypeEnum.*;
 
 import javax.annotation.Resource;
+import javax.annotation.security.PermitAll;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
@@ -46,6 +45,7 @@ public class ProductController {
 
 
     @PostMapping("/create")
+    @PermitAll
     @Operation(summary = "创建商品信息")
     @PreAuthorize("@ss.hasPermission('t:product:create')")
     public CommonResult<Long> createProduct(@Valid @RequestBody ProductSaveReqVO createReqVO) {
@@ -70,9 +70,10 @@ public class ProductController {
     }
 
     @GetMapping("/get")
+    @PermitAll
     @Operation(summary = "获得商品信息")
-    @Parameter(name = "id", description = "编号", required = true, example = "1024")
-    @PreAuthorize("@ss.hasPermission('t:product:query')")
+    //@Parameter(name = "id", description = "编号", required = true, example = "1024")
+    //@PreAuthorize("@ss.hasPermission('t:product:query')")
     public CommonResult<ProductRespVO> getProduct(@RequestParam("id") Long id) {
         ProductInfoVo product = productService.getProduct(id);
         return success(BeanUtils.toBean(product, ProductInfoVo.class));

@@ -4,9 +4,9 @@ import cn.hutool.json.JSONObject;
 import cn.iocoder.yudao.module.system.controller.yunExpress.model.RequestModel;
 
 public interface ShippingFeeService {
-    JSONObject getShippingFeeDetail(RequestModel tokenModelBuilder);
+    JSONObject getShippingFeeDetail(String wayBillNumber);
 
-    JSONObject getTrackInfo(RequestModel tokenModelBuilder);
+    JSONObject getTrackInfo(String orderNumber);
 
 
 }

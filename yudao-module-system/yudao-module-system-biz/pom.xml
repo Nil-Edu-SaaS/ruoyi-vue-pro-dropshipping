@@ -114,6 +114,12 @@
             <groupId>com.xingyuv</groupId>
             <artifactId>spring-boot-starter-captcha-plus</artifactId> <!-- 验证码，一般用于登录使用 -->
         </dependency>
+
+        <dependency>
+            <groupId>top.taolord</groupId>
+            <artifactId>yunexpress-sdk</artifactId>
+            <version>2.0.12</version> <!-- 云途物流，云途物流对接 -->
+        </dependency>
     </dependencies>
 
 </project>

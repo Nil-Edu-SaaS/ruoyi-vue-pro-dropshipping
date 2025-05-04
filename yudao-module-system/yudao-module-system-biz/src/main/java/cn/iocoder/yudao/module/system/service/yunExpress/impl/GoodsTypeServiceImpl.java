@@ -1,15 +1,20 @@
 package cn.iocoder.yudao.module.system.service.yunExpress.impl;
 
 import cn.iocoder.yudao.framework.common.pojo.PageResult;
+import cn.iocoder.yudao.framework.security.core.util.SecurityFrameworkUtils;
 import cn.iocoder.yudao.module.system.controller.yunExpress.vo.GoodsTypePageReqVO;
 import cn.iocoder.yudao.module.system.controller.yunExpress.vo.GoodsTypeSaveReqVO;
 import cn.iocoder.yudao.module.system.dal.dataobject.yunExpress.GoodsTypeDO;
 import cn.iocoder.yudao.module.system.dal.mysql.yunExpress.GoodsTypeMapper;
 import cn.iocoder.yudao.module.system.service.yunExpress.GoodsTypeService;
+import cn.iocoder.yudao.module.system.service.yunExpress.impl.base.BaseServiceImpl;
 import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import org.springframework.validation.annotation.Validated;
 import cn.iocoder.yudao.framework.common.util.object.BeanUtils;
+
+import java.time.LocalDateTime;
+import java.util.Date;
 
 import static cn.iocoder.yudao.framework.common.exception.util.ServiceExceptionUtil.exception;
 import static cn.iocoder.yudao.module.system.enums.yunExpress.ErrorCodeConstants.GOODS_TYPE_NOT_EXISTS;
@@ -21,7 +26,7 @@ import static cn.iocoder.yudao.module.system.enums.yunExpress.ErrorCodeConstants
  */
 @Service
 @Validated
-public class GoodsTypeServiceImpl implements GoodsTypeService {
+public class GoodsTypeServiceImpl extends BaseServiceImpl implements GoodsTypeService {
 
     @Resource
     private GoodsTypeMapper goodsTypeMapper;
@@ -41,6 +46,9 @@ public class GoodsTypeServiceImpl implements GoodsTypeService {
         validateGoodsTypeExists(updateReqVO.getId());
         // 更新
         GoodsTypeDO updateObj = BeanUtils.toBean(updateReqVO, GoodsTypeDO.class);
+
+        updateObj.setUpdateTime(LocalDateTime.now());
+        updateObj.setUpdater(String.valueOf(SecurityFrameworkUtils.getLoginUser().getId()));
         goodsTypeMapper.updateById(updateObj);
     }
 

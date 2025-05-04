@@ -5,4 +5,6 @@ import cn.iocoder.yudao.framework.common.exception.ErrorCode;
 // ========== 货品类型 TODO 补充编号 ==========
 public interface ErrorCodeConstants {
     ErrorCode GOODS_TYPE_NOT_EXISTS = new ErrorCode(500, "货品类型不存在");
+
+    ErrorCode PRICE_TRIAL_NOT_EXISTS = new ErrorCode(500, "物流价格不存在");
 }

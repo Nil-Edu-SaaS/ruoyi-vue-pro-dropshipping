@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 @Component
 @Data
 @ConfigurationProperties(prefix = "dev.yuntu")
-public class YunTuConfigProperties {
+public class YunExpressConfigProperties {
 
     public String customerId;
     public String apiSecret;
