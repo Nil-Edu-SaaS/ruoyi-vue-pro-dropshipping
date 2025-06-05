@@ -16,7 +16,8 @@ import javax.validation.constraints.NotEmpty;
  * @author jason
  */
 @Component
-@ConfigurationProperties(prefix = "yudao.trade.express")
+// TODO ht 这里配置文件加载不了不知道是为什么
+//@ConfigurationProperties(prefix = "yudao.trade.express")
 @Data
 @Validated
 public class TradeExpressProperties {
